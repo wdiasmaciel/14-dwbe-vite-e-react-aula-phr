@@ -99,14 +99,19 @@ export default function Exemplo01({ voltar }) {
 
             <section className="secao-produtos">
                 <h2 id="titulo-lista-produtos">Lista de produtos</h2>
-                {erroExclusao && <p className="mensagem-erro" role="alert">{erroExclusao}</p>}
+
+                {erroExclusao && <p className="mensagem-erro">{erroExclusao}</p>}
+                
                 {carregando && <p>Carregando produtos...</p>}
+                
                 {erroCarregamento && (
-                    <p className="mensagem-erro" role="alert">{erroCarregamento}</p>
+                    <p className="mensagem-erro">{erroCarregamento}</p>
                 )}
+
                 {!carregando && !erroCarregamento && produtos.length === 0 && (
                     <p>Nenhum produto encontrado.</p>
                 )}
+                
                 <div className="lista-produtos">
                     {produtos.map((produto) => (
                         <div className="item-produto" key={produto.id}>
