@@ -43,6 +43,17 @@
   font: inherit;
 }
 
+/*
+ * A propriedade "resize: vertical;" permite que o usuário 
+ * redimensione manualmente o elemento somente na vertical,
+ * ou seja, aumente ou diminua sua altura.
+ * Ela é aplicada sobre elementos textarea ou outros com 
+ * conteúdo redimensionável. Os valores mais comuns são:
+ * resize: none; —> impede o redimensionamento.
+ * resize: vertical; —> permite alterar apenas a altura.
+ * resize: horizontal; —> permite alterar apenas a largura.
+ * resize: both; —> permite alterar largura e altura.
+ */
 .formulario-produto textarea {
   min-height: 5rem;
   resize: vertical;
