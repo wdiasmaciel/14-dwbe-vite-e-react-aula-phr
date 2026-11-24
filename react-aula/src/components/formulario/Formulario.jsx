@@ -38,26 +38,30 @@ export default function Formulario({ produto, onSalvar, onCancelar }) {
     const [salvando, setSalvando] = useState(false);
     const [erro, setErro] = useState('');
 
+    /*
+     * Ao alterar o campos do formulário, o evento armazena o campo alterado.
+     * Os campos alterados (inputs e textarea) possuem os atributos name e value.
+     */
     function atualizarCampo(evento) {
-        const { nome, valor } = evento.target;
+        const { name, value } = evento.target;
 
         /*
-         * Os colchetes em [nome] indicam uma propriedade dinâmica no objeto:
-         * o nome da chave será o valor da variável nome.
+         * Os colchetes em [name] indicam uma propriedade dinâmica no objeto:
+         * o nome da chave será o valor da variável name.
          *
-         * Por exemplo, se nome contém "price", então:
+         * Por exemplo, se name contém "price", então:
          *
-         * { ...atuais, [nome]: valor }
+         * { ...atuais, [name]: value }
          *
          * equivale a:
          *
-         * { ...atuais, price: valor }
+         * { ...atuais, price: value }
          *
          * Assim, a instrução copia os campos atuais e atualiza apenas aquele
-         * cujo nome corresponde a nome. A função recebe o estado atual
+         * cujo nome corresponde a name. A função recebe o estado atual
          * (atuais), o que ajuda a atualizar o estado corretamente.
          */
-        setCampos((atuais) => ({ ...atuais, [nome]: valor }));
+        setCampos((atuais) => ({ ...atuais, [name]: value }));
     }
 
     async function salvar(evento) {
