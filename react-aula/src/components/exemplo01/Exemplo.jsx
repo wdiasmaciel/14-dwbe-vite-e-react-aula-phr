@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import CardProduto from './CardProduto.jsx';
-import Formulario from './Formulario.jsx';
+import CardProduto from '../card/CardProduto.jsx';
+import Formulario from '../formulario/Formulario.jsx';
 import {
-    atualizarProduto,
     cadastrarProduto,
-    excluirProduto,
     listarProdutos,
+    atualizarProduto,
+    excluirProduto,
 } from '../../services/produtoService.js';
 import '../../styles/estilo.css';
 
@@ -16,43 +16,41 @@ export default function Exemplo01({ voltar }) {
     const [erroExclusao, setErroExclusao] = useState('');
     const [produtoEmEdicao, setProdutoEmEdicao] = useState(null);
 
-    useEffect(() => {
-        let ativo = true;
+    async function carregarProdutos(ativo) {
+        try {
+            if (ativo) setCarregando(true);
 
-        async function carregarProdutos() {
-            try {
-                const resultado = await listarProdutos();
-                if (ativo) setProdutos(resultado);
-            } catch (erro) {
-                if (ativo) {
-                    setErroCarregamento(erro instanceof Error
-                        ? erro.message
-                        : 'Não foi possível carregar os produtos.');
-                }
-            } finally {
-                if (ativo) setCarregando(false);
+            const resultado = await listarProdutos();
+
+            if (ativo) setProdutos(resultado);
+        } catch (erro) {
+            if (ativo) {
+                setErroCarregamento(erro instanceof Error
+                    ? erro.message
+                    : 'Não foi possível carregar os produtos.');
             }
+        } finally {
+            if (ativo) setCarregando(false);
         }
-
-        carregarProdutos();
-        return () => {
-            ativo = false;
-        };
-    }, []);
+    }
 
     async function salvarProduto(dados) {
         if (produtoEmEdicao) {
             const atualizado = await atualizarProduto(produtoEmEdicao.id, dados);
+
             setProdutos((atuais) => atuais.map((produto) => (
                 produto.id === produtoEmEdicao.id
                     ? { ...produto, ...dados, ...atualizado, id: produtoEmEdicao.id }
                     : produto
             )));
+            
             setProdutoEmEdicao(null);
+            
             return;
         }
 
         const criado = await cadastrarProduto(dados);
+
         setProdutos((atuais) => [{ ...dados, ...criado }, ...atuais]);
     }
 
@@ -60,9 +58,12 @@ export default function Exemplo01({ voltar }) {
         if (!window.confirm('Deseja realmente excluir este produto?')) return;
 
         setErroExclusao('');
+        
         try {
             await excluirProduto(id);
+
             setProdutos((atuais) => atuais.filter((produto) => produto.id !== id));
+            
             if (produtoEmEdicao?.id === id) setProdutoEmEdicao(null);
         } catch (erro) {
             setErroExclusao(erro instanceof Error
@@ -70,6 +71,15 @@ export default function Exemplo01({ voltar }) {
                 : 'Não foi possível excluir o produto.');
         }
     }
+
+    useEffect(() => {
+        let ativo = true;
+        carregarProdutos();
+
+        return () => {
+            ativo = false;
+        };
+    }, []);
 
     return (
         <main className="pagina-produtos">

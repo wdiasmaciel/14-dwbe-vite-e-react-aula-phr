@@ -1,10 +1,4 @@
-export default function CardProduto({
-    nome,
-    preco,
-    descricao,
-    categoria,
-    imagem,
-}) {
+export default function CardProduto({nome, preco, descricao, categoria, imagem}) {
     return (
         <article className="card-produto">
             <img

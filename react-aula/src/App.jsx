@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <h1>Prática 13</h1>
+      <h1>Prática 14</h1>
 
       <button className="botao" type="button" onClick={() => setExemplo('exemplo01')}>
         Exemplo 01
