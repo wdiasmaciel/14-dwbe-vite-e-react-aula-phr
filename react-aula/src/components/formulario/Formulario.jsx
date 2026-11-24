@@ -9,6 +9,21 @@ const camposIniciais = {
 };
 
 export default function Formulario({ produto, onSalvar, onCancelar }) {
+    /*
+     * Essa instrução cria o estado "campos" com useState:
+     * 1. "campos" guarda os valores atuais do formulário.
+     * 2. "setCampos" é a função para atualizá-los.
+     * A função passada a "useState" é executada apenas na inicialização do componente.
+     * O objeto inicial combina os valores nesta ordem:
+     * 1. ...camposIniciais: valores padrão dos campos (strings vazios).
+     * 2. ...produto: quando existe, os dados do produto substituem os padrões 
+     *                correspondentes.
+     * 3. price: é definido por último, então sempre prevalece. Se houver produto, o 
+     *           preço vira texto com String(produto.price). Caso contrário, começa 
+     *           como '' (string vazio).
+     * Isso ajuda a preencher o formulário com os dados de um produto para edição ou 
+     * deixá-lo vazio para um novo cadastro.
+     */
     const [campos, setCampos] = useState(() => ({
         ...camposIniciais,
         ...produto,
