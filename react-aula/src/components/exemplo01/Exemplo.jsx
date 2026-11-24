@@ -16,6 +16,21 @@ export default function Exemplo01({ voltar }) {
     const [erroExclusao, setErroExclusao] = useState('');
     const [produtoEmEdicao, setProdutoEmEdicao] = useState(null);
 
+    async function carregarProdutos(ativo) {
+        try {
+            const resultado = await listarProdutos();
+            if (ativo) setProdutos(resultado);
+        } catch (erro) {
+            if (ativo) {
+                setErroCarregamento(erro instanceof Error
+                    ? erro.message
+                    : 'Não foi possível carregar os produtos.');
+            }
+        } finally {
+            if (ativo) setCarregando(false);
+        }
+    }
+
     async function salvarProduto(dados) {
         if (produtoEmEdicao) {
             const atualizado = await atualizarProduto(produtoEmEdicao.id, dados);
@@ -25,9 +40,9 @@ export default function Exemplo01({ voltar }) {
                     ? { ...produto, ...atualizado, ...dados, id: produtoEmEdicao.id }
                     : produto
             )));
-            
+
             setProdutoEmEdicao(null);
-            
+
             return;
         }
 
@@ -40,12 +55,12 @@ export default function Exemplo01({ voltar }) {
         if (!window.confirm('Deseja realmente excluir este produto?')) return;
 
         setErroExclusao('');
-        
+
         try {
             await excluirProduto(id);
 
             setProdutos((atuais) => atuais.filter((produto) => produto.id !== id));
-            
+
             if (produtoEmEdicao?.id === id) setProdutoEmEdicao(null);
         } catch (erro) {
             setErroExclusao(erro instanceof Error
@@ -56,24 +71,8 @@ export default function Exemplo01({ voltar }) {
 
     useEffect(() => {
         let ativo = true;
-
-        async function carregarProdutos() {
-            try {
-                const resultado = await listarProdutos();
-                if (ativo) setProdutos(resultado);
-            } catch (erro) {
-                if (ativo) {
-                    setErroCarregamento(erro instanceof Error
-                        ? erro.message
-                        : 'Não foi possível carregar os produtos.');
-                }
-            } finally {
-                if (ativo) setCarregando(false);
-            }
-        }
-
-        carregarProdutos();
-
+        carregarProdutos(ativo);
+        
         return () => {
             ativo = false;
         };
