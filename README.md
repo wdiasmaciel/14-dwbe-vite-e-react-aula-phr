@@ -92,13 +92,25 @@ git add . && git commit -m "Exemplo" && git push
 
 # Exercícios 
 
+1. Explique o significado da sigla CRUD.
 
 ---
 
-Usando Node.js e Express crie uma API de produtos.
+Usando Node.js, Express, Vite e React crie uma API de produtos.
 
-
+2. Crie uma função para cadastrar clientes utilizando `POST`.
+3. Crie uma função para atualizar clientes utilizando `PUT`.
+4. Crie uma função para excluir clientes utilizando `DELETE`.
+5. Implemente confirmação antes da exclusão de um produto.
+6. Como desafio, implemente atualização automática da lista após cada operação.
+7. Implemente uma API que realize o CRUD de uma agência de viagens. Considere as tabelas Cliente, Reserva e Destino:
+```text
+Cliente(id, nome, email)
+Destino(id, nome_destino, pais)
+Reserva(id, id_cliente, id_destino, data_partida, data_retorno, valor)
+```
+ 
 ---
 
-8. Gere um projeto para a API https://dummyjson.com/docs/products.
-9. Gere um projeto para a API https://jsonplaceholder.typicode.com/photos.
+8. Gere um projeto com operações de CRUD para a API https://dummyjson.com/docs/products.
+9. Gere um projeto com operações de CRUD para a API https://jsonplaceholder.typicode.com/photos.
