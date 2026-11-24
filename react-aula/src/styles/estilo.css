@@ -66,12 +66,30 @@
   gap: 0.5rem;
 }
 
-.botao-secundario {
+/*
+ * Em CSS, quando duas classes são concatenadas como em 
+ * ".botao.botao-secundario" são selecionados os elementos 
+ * que possuem as duas classes ao mesmo tempo: botao e botao-secundario.
+ * Por exemplo, corresponde a:
+ * <button class="botao botao-secundario">Voltar</button>
+ * Sem o espaço entre os seletores, as classes são exigidas no 
+ * mesmo elemento. Já ".botao .botao-secundario" (com espaço) selecionaria 
+ * um elemento .botao-secundario dentro de outro elemento .botao.
+ */
+.botao.botao-secundario {
   background-color: #5b6270;
 }
 
-.botao-perigo {
+.botao.botao-perigo {
   background-color: #b42318;
+}
+
+.botao.botao-secundario:hover {
+  background-color: #454b56;
+}
+
+.botao.botao-perigo:hover {
+  background-color: #8e1b13;
 }
 
 .secao-produtos {
