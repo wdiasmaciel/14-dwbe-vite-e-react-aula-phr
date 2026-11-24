@@ -133,18 +133,24 @@
 
 .card-produto-categoria {
   color: #555d6b;
-  text-transform: capitalize;
+  text-transform: capitalize; /* Primeira letra de cada palavra em maiúscula. */
 }
 
+/*
+ * O bloco abaixo limita a descrição do produto a três linhas para 
+ * manter os cartões mais uniformes. Se retirar o bloco, as descrições 
+ * aparecem completas e os cartões podem ficar com alturas diferentes.
+ */
 .card-produto-descricao {
-  display: -webkit-box;
+  display: -webkit-box; /* Formato necessário para o line-clamp com prefixo WebKit. */
   overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; /* Organiza o conteúdo em linhas verticais. */
+  -webkit-line-clamp: 3; /* Limita o texto a três linhas. */
 }
 
 .card-produto-preco {
   font-size: 1.1rem;
+  color: green;
 }
 
 .mensagem-erro {
