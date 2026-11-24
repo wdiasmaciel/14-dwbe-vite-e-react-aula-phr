@@ -56,6 +56,7 @@ export default function Formulario({ produto, onSalvar, onCancelar }) {
 
     async function salvar(evento) {
         evento.preventDefault();
+
         setSalvando(true);
         setErro('');
 
@@ -128,7 +129,7 @@ export default function Formulario({ produto, onSalvar, onCancelar }) {
                 />
             </label>
 
-            {erro && <p className="mensagem-erro" role="alert">{erro}</p>}
+            {erro && <p className="mensagem-erro">{erro}</p>}
 
             <div className="acoes-formulario">
                 <button className="botao" type="submit" disabled={salvando}>
