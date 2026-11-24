@@ -16,31 +16,13 @@ export default function Exemplo01({ voltar }) {
     const [erroExclusao, setErroExclusao] = useState('');
     const [produtoEmEdicao, setProdutoEmEdicao] = useState(null);
 
-    async function carregarProdutos(ativo) {
-        try {
-            if (ativo) setCarregando(true);
-
-            const resultado = await listarProdutos();
-
-            if (ativo) setProdutos(resultado);
-        } catch (erro) {
-            if (ativo) {
-                setErroCarregamento(erro instanceof Error
-                    ? erro.message
-                    : 'Não foi possível carregar os produtos.');
-            }
-        } finally {
-            if (ativo) setCarregando(false);
-        }
-    }
-
     async function salvarProduto(dados) {
         if (produtoEmEdicao) {
             const atualizado = await atualizarProduto(produtoEmEdicao.id, dados);
 
             setProdutos((atuais) => atuais.map((produto) => (
                 produto.id === produtoEmEdicao.id
-                    ? { ...produto, ...dados, ...atualizado, id: produtoEmEdicao.id }
+                    ? { ...produto, ...atualizado, ...dados, id: produtoEmEdicao.id }
                     : produto
             )));
             
@@ -51,7 +33,7 @@ export default function Exemplo01({ voltar }) {
 
         const criado = await cadastrarProduto(dados);
 
-        setProdutos((atuais) => [{ ...dados, ...criado }, ...atuais]);
+        setProdutos((atuais) => [{ ...criado, ...dados, id: criado.id }, ...atuais]);
     }
 
     async function removerProduto(id) {
@@ -74,6 +56,22 @@ export default function Exemplo01({ voltar }) {
 
     useEffect(() => {
         let ativo = true;
+
+        async function carregarProdutos() {
+            try {
+                const resultado = await listarProdutos();
+                if (ativo) setProdutos(resultado);
+            } catch (erro) {
+                if (ativo) {
+                    setErroCarregamento(erro instanceof Error
+                        ? erro.message
+                        : 'Não foi possível carregar os produtos.');
+                }
+            } finally {
+                if (ativo) setCarregando(false);
+            }
+        }
+
         carregarProdutos();
 
         return () => {
