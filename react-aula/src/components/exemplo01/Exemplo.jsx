@@ -72,7 +72,7 @@ export default function Exemplo01({ voltar }) {
     useEffect(() => {
         let ativo = true;
         carregarProdutos(ativo);
-        
+
         return () => {
             ativo = false;
         };
@@ -97,7 +97,7 @@ export default function Exemplo01({ voltar }) {
                 onCancelar={() => setProdutoEmEdicao(null)}
             />
 
-            <section className="secao-produtos" aria-labelledby="titulo-lista-produtos">
+            <section className="secao-produtos">
                 <h2 id="titulo-lista-produtos">Lista de produtos</h2>
                 {erroExclusao && <p className="mensagem-erro" role="alert">{erroExclusao}</p>}
                 {carregando && <p>Carregando produtos...</p>}
