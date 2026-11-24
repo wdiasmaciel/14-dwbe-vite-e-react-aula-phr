@@ -146,6 +146,7 @@
   overflow: hidden;
   -webkit-box-orient: vertical; /* Organiza o conteúdo em linhas verticais. */
   -webkit-line-clamp: 3; /* Limita o texto a três linhas. */
+  line-clamp: 3; /* Limita o texto a três linhas. */
 }
 
 .card-produto-preco {
