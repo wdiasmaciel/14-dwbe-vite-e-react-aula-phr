@@ -39,8 +39,9 @@ export default function Formulario({ produto, onSalvar, onCancelar }) {
     const [erro, setErro] = useState('');
 
     /*
-     * Ao alterar o campos do formulário, o evento armazena o campo alterado.
-     * Os campos alterados (inputs e textarea) possuem os atributos name e value.
+     * Ao alterar um campo do formulário, o evento.target identifica o campo alterado.
+     * Os campos alterados (inputs e textarea) possuem os atributos name e value, que
+     * indicam, respectivamente, o nome do campo e o valor digitado.
      */
     function atualizarCampo(evento) {
         const { name, value } = evento.target;
