@@ -33,8 +33,8 @@ export default function Formulario({ produto, onSalvar, onCancelar }) {
     const [erro, setErro] = useState('');
 
     function atualizarCampo(evento) {
-        const { name, value } = evento.target;
-        setCampos((atuais) => ({ ...atuais, [name]: value }));
+        const { nome, valor } = evento.target;
+        setCampos((atuais) => ({ ...atuais, [nome]: valor }));
     }
 
     async function salvar(evento) {
