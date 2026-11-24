@@ -103,13 +103,13 @@ Usando Node.js, Express, Vite e React crie uma API de produtos.
 4. Crie uma função para excluir clientes utilizando `DELETE`.
 5. Implemente confirmação antes da exclusão de um produto.
 6. Como desafio, implemente atualização automática da lista após cada operação.
-7. Implemente uma API que realize o CRUD de uma agência de viagens. Considere as tabelas Cliente, Reserva e Destino:
+7. Implemente uma API que realize o CRUD de uma agência de viagens. Considere as tabelas Cliente, Destino e Reserva:
 ```text
 Cliente(id, nome, email)
 Destino(id, nome_destino, pais)
 Reserva(id, id_cliente, id_destino, data_partida, data_retorno, valor)
 ```
- 
+
 ---
 
 8. Gere um projeto com operações de CRUD para a API https://dummyjson.com/docs/products.
