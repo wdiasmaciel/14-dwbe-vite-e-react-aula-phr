@@ -34,6 +34,23 @@ export default function Formulario({ produto, onSalvar, onCancelar }) {
 
     function atualizarCampo(evento) {
         const { nome, valor } = evento.target;
+
+        /*
+         * Os colchetes em [nome] indicam uma propriedade dinâmica no objeto:
+         * o nome da chave será o valor da variável nome.
+         *
+         * Por exemplo, se nome contém "price", então:
+         *
+         * { ...atuais, [nome]: valor }
+         *
+         * equivale a:
+         *
+         * { ...atuais, price: valor }
+         *
+         * Assim, a instrução copia os campos atuais e atualiza apenas aquele
+         * cujo nome corresponde a nome. A função recebe o estado atual
+         * (atuais), o que ajuda a atualizar o estado corretamente.
+         */
         setCampos((atuais) => ({ ...atuais, [nome]: valor }));
     }
 
