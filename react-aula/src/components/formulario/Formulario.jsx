@@ -8,6 +8,12 @@ const camposIniciais = {
     image: '',
 };
 
+/*
+ * Formulario recebe onSalvar e onCancelar como props do componente pai, Exemplo01, e os extrai.
+ * 1. onSalvar recebe a função salvarProduto, definida em Exemplo.jsx. 
+ * 2. onCancelar não tem uma função nomeada: é uma função anônima passada diretamente ao formulário. 
+ *    Ela chama setProdutoEmEdicao(null) para encerrar a edição.
+ */
 export default function Formulario({ produto, onSalvar, onCancelar }) {
     /*
      * Essa instrução cria o estado "campos" com useState:
